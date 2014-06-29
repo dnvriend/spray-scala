@@ -49,11 +49,11 @@ object Main extends SimpleRoutingApp with App {
 }
 
 object PingActor {
-  val sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS")
-  def props = Props(new PingActor(sdf))
+  def props = Props(new PingActor)
 }
 
-class PingActor(sdf: SimpleDateFormat) extends Actor {
+class PingActor extends Actor {
+  val sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS")
   override def receive: Receive = {
     case _ =>
       sender ! s"pong ${sdf.format(new Date)}"
